@@ -8,17 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		89F3337D2715D9F200DEA9FD /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3337C2715D9F200DEA9FD /* SetApp.swift */; };
-		89F3337F2715D9F200DEA9FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3337E2715D9F200DEA9FD /* ContentView.swift */; };
+		89F3337F2715D9F200DEA9FD /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3337E2715D9F200DEA9FD /* SetGameView.swift */; };
 		89F333812715D9F400DEA9FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F333802715D9F400DEA9FD /* Assets.xcassets */; };
 		89F333842715D9F400DEA9FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F333832715D9F400DEA9FD /* Preview Assets.xcassets */; };
+		89F3338B2715E29B00DEA9FD /* SetGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3338A2715E29B00DEA9FD /* SetGameModel.swift */; };
+		89F3338D2715E37600DEA9FD /* SetGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3338C2715E37600DEA9FD /* SetGameViewModel.swift */; };
+		89F3338F2715E3EB00DEA9FD /* DiamondShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3338E2715E3EB00DEA9FD /* DiamondShape.swift */; };
+		89F333912715E40F00DEA9FD /* SquiggleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F333902715E40F00DEA9FD /* SquiggleShape.swift */; };
+		89F333932715E9E900DEA9FD /* SetGameTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F333922715E9E900DEA9FD /* SetGameTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		89F333792715D9F200DEA9FD /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3337C2715D9F200DEA9FD /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
-		89F3337E2715D9F200DEA9FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		89F3337E2715D9F200DEA9FD /* SetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameView.swift; sourceTree = "<group>"; };
 		89F333802715D9F400DEA9FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89F333832715D9F400DEA9FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		89F3338A2715E29B00DEA9FD /* SetGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameModel.swift; sourceTree = "<group>"; };
+		89F3338C2715E37600DEA9FD /* SetGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameViewModel.swift; sourceTree = "<group>"; };
+		89F3338E2715E3EB00DEA9FD /* DiamondShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondShape.swift; sourceTree = "<group>"; };
+		89F333902715E40F00DEA9FD /* SquiggleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquiggleShape.swift; sourceTree = "<group>"; };
+		89F333922715E9E900DEA9FD /* SetGameTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +61,15 @@
 		89F3337B2715D9F200DEA9FD /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				89F333922715E9E900DEA9FD /* SetGameTheme.swift */,
+				89F3338A2715E29B00DEA9FD /* SetGameModel.swift */,
+				89F3338C2715E37600DEA9FD /* SetGameViewModel.swift */,
+				89F3337E2715D9F200DEA9FD /* SetGameView.swift */,
 				89F3337C2715D9F200DEA9FD /* SetApp.swift */,
-				89F3337E2715D9F200DEA9FD /* ContentView.swift */,
 				89F333802715D9F400DEA9FD /* Assets.xcassets */,
 				89F333822715D9F400DEA9FD /* Preview Content */,
+				89F3338E2715E3EB00DEA9FD /* DiamondShape.swift */,
+				89F333902715E40F00DEA9FD /* SquiggleShape.swift */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -137,8 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89F3337F2715D9F200DEA9FD /* ContentView.swift in Sources */,
+				89F3337F2715D9F200DEA9FD /* SetGameView.swift in Sources */,
+				89F3338B2715E29B00DEA9FD /* SetGameModel.swift in Sources */,
+				89F333912715E40F00DEA9FD /* SquiggleShape.swift in Sources */,
+				89F3338F2715E3EB00DEA9FD /* DiamondShape.swift in Sources */,
+				89F333932715E9E900DEA9FD /* SetGameTheme.swift in Sources */,
 				89F3337D2715D9F200DEA9FD /* SetApp.swift in Sources */,
+				89F3338D2715E37600DEA9FD /* SetGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
