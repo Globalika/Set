@@ -17,14 +17,14 @@ struct SetGameModel <CardContent> {
     
     init (createCardContent: (Int) -> CardContent) {
         cards = []
-        for index in 0..<81 {
+        for index in 0..<8 {
             let content = createCardContent(index)
             cards.append(Card(content: content,id: index))
         }
     }
     
     struct Card : Identifiable {
-        let isFaceUp = false
+        let isFaceUp = true
         let isMatched = false
         let content: CardContent
         let id: Int

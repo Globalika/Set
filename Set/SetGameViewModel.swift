@@ -21,4 +21,8 @@ class SetGameViewModel : ObservableObject {
     var cards: Array<Card> {
         model.cards
     }
+    
+    func choose(_ card: Card) {
+        model.choose(card)
+    }
 }

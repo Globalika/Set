@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-enum Shape: CaseIterable{
+enum EShape: CaseIterable{
     case diamond, squiggle, oval
 }
-enum Color: CaseIterable {
+enum EColor: CaseIterable {
     case red, green, blue
 }
-enum NumberOfShapes: Int, CaseIterable {
+enum ENumberOfShapes: Int, CaseIterable {
     case one = 1, two, three
 }
-enum Shadling: CaseIterable {
+enum EShadling: CaseIterable {
     case solid, stripted, open
 }
-extension Color : RawRepresentable {
+extension EColor : RawRepresentable {
     typealias RawValue = Color
 
         init?(rawValue: RawValue) {
@@ -28,6 +28,8 @@ extension Color : RawRepresentable {
             case Color.red: self = .red
             case Color.green: self = .green
             case Color.blue: self = .blue
+            default:
+                return nil
             }
         }
 
@@ -41,11 +43,11 @@ extension Color : RawRepresentable {
 }
 
 struct SetGameTheme {
-    let shape: Shape
-    let color: Color
-    let numberOfShape: NumberOfShapes
-    let shadling: Shadling
-    init(_ shape: Shape, _ color: Color, _ numberOfShape: NumberOfShapes,_ shadling: Shadling) {
+    let shape: EShape
+    let color: EColor
+    let numberOfShape: ENumberOfShapes
+    let shadling: EShadling
+    init(_ shape: EShape, _ color: EColor, _ numberOfShape: ENumberOfShapes,_ shadling: EShadling) {
         self.shape = shape
         self.color = color
         self.numberOfShape = numberOfShape
@@ -53,10 +55,10 @@ struct SetGameTheme {
     }
     static func createArray() -> [SetGameTheme] {
         var array = [SetGameTheme]()
-        for shape in Shape.allCases {
-            for color in Color.allCases {
-                for shapeNumber in NumberOfShapes.allCases {
-                    for shadling in Shadling.allCases {
+        for shape in EShape.allCases {
+            for color in EColor.allCases {
+                for shapeNumber in ENumberOfShapes.allCases {
+                    for shadling in EShadling.allCases {
                         array.append(SetGameTheme(shape, color, shapeNumber, shadling))
                     }
                 }
