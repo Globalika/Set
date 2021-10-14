@@ -23,7 +23,7 @@ struct Oval: Shape {
         p.addArc(
             center: leftCenter,
             radius: radius,
-            startAngle: Angle(degrees: 0),
+            startAngle: Angle(degrees: -90),
             endAngle: Angle(degrees: 90),
             clockwise: true
         )
@@ -32,7 +32,7 @@ struct Oval: Shape {
         p.addArc(
             center: rightCenter,
             radius: radius,
-            startAngle: Angle(degrees: 180),
+            startAngle: Angle(degrees: 90),
             endAngle: Angle(degrees: 270),
             clockwise: true
         )

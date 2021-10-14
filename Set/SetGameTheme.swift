@@ -8,8 +8,20 @@
 import Foundation
 import SwiftUI
 
-enum EShape: CaseIterable{
-    case diamond, squiggle, oval
+
+enum EShape: String, CaseIterable {
+    case diamond , squiggle, oval
+    
+    func getShape() -> AnyView {
+        switch self {
+        case .diamond:
+            return AnyView(Diamond())
+        case .squiggle:
+            return AnyView(Squiggle())
+        case .oval:
+            return AnyView(Oval())
+        }
+    }
 }
 enum EColor: CaseIterable {
     case red, green, blue
@@ -17,8 +29,8 @@ enum EColor: CaseIterable {
 enum ENumberOfShapes: Int, CaseIterable {
     case one = 1, two, three
 }
-enum EShadling: CaseIterable {
-    case solid, stripted, open
+enum EShadling: Double, CaseIterable {
+    case solid = 0, stripted = 0.4, open = 1
 }
 extension EColor : RawRepresentable {
     typealias RawValue = Color
@@ -41,7 +53,6 @@ extension EColor : RawRepresentable {
             }
         }
 }
-
 struct SetGameTheme {
     let shape: EShape
     let color: EColor
