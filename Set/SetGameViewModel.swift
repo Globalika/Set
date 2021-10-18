@@ -13,7 +13,7 @@ class SetGameViewModel : ObservableObject {
     @Published private var model: SetGameModel
     
     init() {
-        let array = SetGameTheme.themeArray.shuffled()
+        let array = SetGameContent.themeArray.shuffled()
         self.model = SetGameModel() { index in array[index]}
     }
     
@@ -28,7 +28,7 @@ class SetGameViewModel : ObservableObject {
     }
     
     func restart() {
-        let array = SetGameTheme.themeArray.shuffled()
+        let array = SetGameContent.themeArray.shuffled()
         self.model = SetGameModel() { index in array[index] }
     }
     

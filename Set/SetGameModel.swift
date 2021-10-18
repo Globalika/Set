@@ -19,22 +19,26 @@ struct SetGameModel {
         {
             if let isSet = isThereASet {
                 if isSet {
-                    if !deck.isEmpty {
-                        for index in setForCheck.sorted() {
+                    for index in setForCheck {
+                        cards[index].isSelected = false
+                    }
+                    if deck.isEmpty {
+                        for index in setForCheck.sorted(by: >) {
+                            cards.remove(at: index)
+                        }
+                    } else {
+                        for index in setForCheck {
                             cards[index] = deck.first!
                             deck.remove(at: deck.startIndex)
                         }
-                    } else {
-                        for index in setForCheck.sorted() {
-                            cards.remove(at: index)
-                        }
                     }
+                    isThereASet = nil
+                    setForCheck.removeAll()
+                    return
                 } else {
-                    for index in setForCheck.sorted() {
+                    for index in setForCheck {
                         cards[index].isSelected = false
                     }
-                    cards[choosenIndex].isSelected = true
-                    setForCheck.insert(choosenIndex)
                 }
                 isThereASet = nil
                 setForCheck.removeAll()
@@ -68,13 +72,13 @@ struct SetGameModel {
                     }
                     isThereASet = nil
                 } else {
-                    for i in 0..<3 {
+                    for _ in 0..<3 {
                         cards.append(deck.first!)
                         deck.remove(at: deck.startIndex)
                     }
                 }
             } else {
-                for i in 0..<3{
+                for _ in 0..<3{
                     cards.append(deck.first!)
                     deck.remove(at: deck.startIndex)
                 }
@@ -84,7 +88,7 @@ struct SetGameModel {
         return false
     }
     
-    init (createCardContent: (Int) -> SetGameTheme) {
+    init (createCardContent: (Int) -> SetGameContent) {
         deck = []
         for index in 0..<81 {
             let content = createCardContent(index)
@@ -117,17 +121,7 @@ struct SetGameModel {
     
     struct Card : Identifiable {
         var isSelected = false
-        let content: SetGameTheme
+        let content: SetGameContent
         let id: Int
-    }
-}
-
-extension Array {
-    var oneAndOnly: Element? {
-        if count == 1 {
-            return first
-        } else {
-            return nil
-        }
     }
 }

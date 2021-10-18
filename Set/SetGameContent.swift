@@ -8,18 +8,18 @@
 import Foundation
 import SwiftUI
 
-
 enum EShape: String, CaseIterable {
     case diamond , squiggle, oval
     
-    func getShape() -> AnyView {
+    func getShape(color: Color, center: CGPoint, shadling: EShadling
+                  ,height: CGFloat, width: CGFloat) -> AnyView {
         switch self {
         case .diamond:
-            return AnyView(Diamond())
+            return AnyView(Diamond(color, center, shadling, height, width))
         case .squiggle:
-            return AnyView(Squiggle())
+            return AnyView(Squiggle(color, center, shadling, height, width))
         case .oval:
-            return AnyView(Oval())
+            return AnyView(Oval(color, center, shadling, height, width))
         }
     }
 }
@@ -53,7 +53,7 @@ extension EColor : RawRepresentable {
             }
         }
 }
-struct SetGameTheme {
+struct SetGameContent {
     let shape: EShape
     let color: EColor
     let numberOfShape: ENumberOfShapes
@@ -64,13 +64,13 @@ struct SetGameTheme {
         self.numberOfShape = numberOfShape
         self.shadling = shadling
     }
-    static func createArray() -> [SetGameTheme] {
-        var array = [SetGameTheme]()
+    static func createArray() -> [SetGameContent] {
+        var array = [SetGameContent]()
         for shape in EShape.allCases {
             for color in EColor.allCases {
                 for shapeNumber in ENumberOfShapes.allCases {
                     for shadling in EShadling.allCases {
-                        array.append(SetGameTheme(shape, color, shapeNumber, shadling))
+                        array.append(SetGameContent(shape, color, shapeNumber, shadling))
                     }
                 }
             }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SetGameView: View {
-    
     @State private var disabled = false
     @ObservedObject var game: SetGameViewModel
     
@@ -21,7 +20,9 @@ struct SetGameView: View {
                 Spacer()
                 Text("cards left: \(game.cards.count + game.deck.count)")
                 Spacer()
-                Button {game.restart() } label: {
+                Button { game.restart()
+                    disabled = false
+                } label: {
                     Text("New Game")
                 }
             }
@@ -52,45 +53,53 @@ struct CardView: View {
         GeometryReader { geometry in
             ZStack {
                 let shape = RoundedRectangle(cornerRadius:  DrawingConstrants.cornerRadius)
-                    shape.fill().foregroundColor(.white)
-                    VStack {
-                        ForEach((0..<card.content.numberOfShape.rawValue)
-                                , id: \.self) {
-                            index in
-                            if(card.content.shadling == EShadling.solid) {
-                                switch card.content.shape {
-                                case .diamond:
-                                    Diamond()
-                                        .stroke()
-                                        .font(Font.system(size : geometry.size.width))
-                                        .foregroundColor(card.content.color.rawValue)
-                                case .squiggle:
-                                    Squiggle()
-                                        .stroke()
-                                        .font(Font.system(size : geometry.size.width))
-                                        .foregroundColor(card.content.color.rawValue)
-                                case .oval:
-                                    Oval()
-                                        .stroke()
-                                        .font(Font.system(size : geometry.size.width))
-                                        .foregroundColor(card.content.color.rawValue)
-                                }
-                            } else {
-                                card.content.shape.getShape()
-                                    .font(Font.system(size : geometry.size.width))
-                                    .foregroundColor(card.content.color.rawValue)
-                                    .opacity(card.content.shadling.rawValue)
-                            }
-                        }
+                shape.fill().foregroundColor(.white)
+                VStack {
+                    ForEach((0..<card.content.numberOfShape.rawValue)
+                            , id: \.self)
+                    { index in
+                        card.content.shape.getShape(
+                            color: card.content.color.rawValue,
+                            center: CGPoint(x: geometry.size.width / 2,
+                                            y: geometry.size.width * getYCenterCoef(
+                                                card.content.numberOfShape.rawValue,
+                                                index)),
+                            shadling: card.content.shadling,
+                            height: geometry.size.height,
+                            width: geometry.size.width)
+                                .font(Font.system(size : geometry.size.width))
                     }
+                }
             }
         }
     }
+    
+    private func getYCenterCoef(_ numberOfCCards: Int, _ currentNumber: Int) -> CGFloat {
+        switch numberOfCCards{
+        case 1:
+            return CGFloat(Float(currentNumber / 2) + Float(0.75))
+        case 2:
+            return CGFloat(Float(currentNumber / 4) + Float(0.35))
+        default:
+            return CGFloat(Float(currentNumber / 6) + Float(0.22))
+        }
+    }
+    
     private struct DrawingConstrants {
         static let cornerRadius: CGFloat = 20
         static let lineWidth: CGFloat = 1
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
