@@ -11,7 +11,7 @@ struct ShapeParamsModel: ShapeParams {
     let color: Color
     let center: CGPoint
     let shadling: EShadling
-    var size: CGSize
+    let size: CGSize
     init(color: Color, center: CGPoint, shadling: EShadling, size: CGSize) {
         self.color = color
         self.center = center
