@@ -7,36 +7,33 @@
 
 import SwiftUI
 
-class SetGameViewModel : ObservableObject {
+class SetGameViewModel: ObservableObject {
     typealias Card = SetGameModel.Card
-   
     @Published private var model: SetGameModel
-    
     init() {
         let array = SetGameContent.themeArray.shuffled()
-        self.model = SetGameModel() { index in array[index]}
+        self.model = SetGameModel { index in array[index] }
     }
-    
-    var cards: Array<Card> {
+    var cards: [Card] {
         model.cards
     }
-    var deck: Array<Card> {
+    var deck: [Card] {
         model.deck
     }
     func choose(_ card: Card) {
         model.choose(card)
     }
-    
     func restart() {
         let array = SetGameContent.themeArray.shuffled()
-        self.model = SetGameModel() { index in array[index] }
+        self.model = SetGameModel { index in array[index] }
     }
-    
     func dealThreeMore() -> Bool {
         model.dealThreeMore()
     }
-    
-    func isThereASet() -> Bool? {
+    func isThereASet() -> Bool {
         model.isThereASet
+    }
+    func isSetNotFull() -> Bool {
+        model.isSetNotFull
     }
 }

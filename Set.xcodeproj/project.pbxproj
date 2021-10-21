@@ -10,9 +10,9 @@
 		89B52ECF271D607B0061FDC8 /* ShapeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ECE271D607B0061FDC8 /* ShapeParams.swift */; };
 		89B52ED7271DB4C90061FDC8 /* PathExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ED6271DB4C90061FDC8 /* PathExtention.swift */; };
 		89B52ED9271DE2530061FDC8 /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ED8271DE2530061FDC8 /* ViewExtention.swift */; };
-		89B52EDC271DE8F00061FDC8 /* ShapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52EDB271DE8F00061FDC8 /* ShapeModifier.swift */; };
 		89C365D72717682200EE4F75 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C365D62717682200EE4F75 /* AspectVGrid.swift */; };
 		89C365D92717739900EE4F75 /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C365D82717739900EE4F75 /* Oval.swift */; };
+		89C511B9271FFB0C00F84285 /* ShapeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C511B8271FFB0C00F84285 /* ShapeModel.swift */; };
 		89F3337D2715D9F200DEA9FD /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3337C2715D9F200DEA9FD /* SetApp.swift */; };
 		89F3337F2715D9F200DEA9FD /* SetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F3337E2715D9F200DEA9FD /* SetGameView.swift */; };
 		89F333812715D9F400DEA9FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89F333802715D9F400DEA9FD /* Assets.xcassets */; };
@@ -28,9 +28,9 @@
 		89B52ECE271D607B0061FDC8 /* ShapeParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeParams.swift; sourceTree = "<group>"; };
 		89B52ED6271DB4C90061FDC8 /* PathExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtention.swift; sourceTree = "<group>"; };
 		89B52ED8271DE2530061FDC8 /* ViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtention.swift; sourceTree = "<group>"; };
-		89B52EDB271DE8F00061FDC8 /* ShapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModifier.swift; sourceTree = "<group>"; };
 		89C365D62717682200EE4F75 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		89C365D82717739900EE4F75 /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
+		89C511B8271FFB0C00F84285 /* ShapeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModel.swift; sourceTree = "<group>"; };
 		89F333792715D9F200DEA9FD /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F3337C2715D9F200DEA9FD /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
 		89F3337E2715D9F200DEA9FD /* SetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameView.swift; sourceTree = "<group>"; };
@@ -61,6 +61,7 @@
 				89F333902715E40F00DEA9FD /* Squiggle.swift */,
 				89C365D82717739900EE4F75 /* Oval.swift */,
 				89B52ECE271D607B0061FDC8 /* ShapeParams.swift */,
+				89C511B8271FFB0C00F84285 /* ShapeModel.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -72,14 +73,6 @@
 				89B52ED8271DE2530061FDC8 /* ViewExtention.swift */,
 			);
 			path = Extentions;
-			sourceTree = "<group>";
-		};
-		89B52EDA271DE8BE0061FDC8 /* Modifier */ = {
-			isa = PBXGroup;
-			children = (
-				89B52EDB271DE8F00061FDC8 /* ShapeModifier.swift */,
-			);
-			path = Modifier;
 			sourceTree = "<group>";
 		};
 		89F333702715D9F200DEA9FD = {
@@ -101,7 +94,6 @@
 		89F3337B2715D9F200DEA9FD /* Set */ = {
 			isa = PBXGroup;
 			children = (
-				89B52EDA271DE8BE0061FDC8 /* Modifier */,
 				89B52ED0271DAD910061FDC8 /* Extentions */,
 				89F333922715E9E900DEA9FD /* SetGameContent.swift */,
 				89F3338A2715E29B00DEA9FD /* SetGameModel.swift */,
@@ -134,6 +126,7 @@
 				89F333752715D9F200DEA9FD /* Sources */,
 				89F333762715D9F200DEA9FD /* Frameworks */,
 				89F333772715D9F200DEA9FD /* Resources */,
+				89C511BA2720123C00F84285 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -189,6 +182,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		89C511BA2720123C00F84285 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		89F333752715D9F200DEA9FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -201,11 +215,11 @@
 				89F333912715E40F00DEA9FD /* Squiggle.swift in Sources */,
 				89F3338F2715E3EB00DEA9FD /* Diamond.swift in Sources */,
 				89C365D92717739900EE4F75 /* Oval.swift in Sources */,
-				89B52EDC271DE8F00061FDC8 /* ShapeModifier.swift in Sources */,
 				89B52ED7271DB4C90061FDC8 /* PathExtention.swift in Sources */,
 				89F333932715E9E900DEA9FD /* SetGameContent.swift in Sources */,
 				89B52ECF271D607B0061FDC8 /* ShapeParams.swift in Sources */,
 				89F3337D2715D9F200DEA9FD /* SetApp.swift in Sources */,
+				89C511B9271FFB0C00F84285 /* ShapeModel.swift in Sources */,
 				89F3338D2715E37600DEA9FD /* SetGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
