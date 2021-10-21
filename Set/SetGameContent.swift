@@ -8,18 +8,16 @@
 import Foundation
 import SwiftUI
 
-
 enum EShape: String, CaseIterable {
-    case diamond , squiggle, oval
-    
-    func getShape() -> AnyView {
+    case diamond, squiggle, oval
+    func getShape(shapeParams: ShapeParams) -> AnyView {
         switch self {
         case .diamond:
-            return AnyView(Diamond())
+            return AnyView(Diamond(shapeParams: shapeParams))
         case .squiggle:
-            return AnyView(Squiggle())
+            return AnyView(Squiggle(shapeParams: shapeParams))
         case .oval:
-            return AnyView(Oval())
+            return AnyView(Oval(shapeParams: shapeParams))
         }
     }
 }
@@ -32,7 +30,7 @@ enum ENumberOfShapes: Int, CaseIterable {
 enum EShadling: Double, CaseIterable {
     case solid = 0, stripted = 0.4, open = 1
 }
-extension EColor : RawRepresentable {
+extension EColor: RawRepresentable {
     typealias RawValue = Color
 
         init?(rawValue: RawValue) {
@@ -53,29 +51,35 @@ extension EColor : RawRepresentable {
             }
         }
 }
-struct SetGameTheme {
-    let shape: EShape
-    let color: EColor
-    let numberOfShape: ENumberOfShapes
-    let shadling: EShadling
-    init(_ shape: EShape, _ color: EColor, _ numberOfShape: ENumberOfShapes,_ shadling: EShadling) {
+
+struct SetGameContent {
+    var shape: EShape
+    var color: EColor
+    var numberOfShape: ENumberOfShapes
+    var shadling: EShadling
+    init(_ shape: EShape,
+         _ color: EColor,
+         _ numberOfShape: ENumberOfShapes,
+         _ shadling: EShadling) {
         self.shape = shape
         self.color = color
         self.numberOfShape = numberOfShape
         self.shadling = shadling
     }
-    static func createArray() -> [SetGameTheme] {
-        var array = [SetGameTheme]()
+    static var themeArray: [SetGameContent] = {
+        var array: [SetGameContent] = []
         for shape in EShape.allCases {
             for color in EColor.allCases {
                 for shapeNumber in ENumberOfShapes.allCases {
                     for shadling in EShadling.allCases {
-                        array.append(SetGameTheme(shape, color, shapeNumber, shadling))
+                        array.append(SetGameContent(shape,
+                                                    color,
+                                                    shapeNumber,
+                                                    shadling))
                     }
                 }
             }
         }
         return array
-    }
-    static let themeArray = createArray()
+    }()
 }
