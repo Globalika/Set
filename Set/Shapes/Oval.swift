@@ -11,14 +11,12 @@ struct Oval: View, ShapeParams {
     let color: Color
     let center: CGPoint
     let shadling: EShadling
-    let height: CGFloat
-    let width: CGFloat
+    var size: CGSize
     init(shapeParams: ShapeParams) {
         self.color = shapeParams.color
         self.center = shapeParams.center
         self.shadling = shapeParams.shadling
-        self.height = shapeParams.height
-        self.width = shapeParams.width
+        self.size = shapeParams.size
     }
     var body: some View {
         Path { path in
@@ -28,7 +26,7 @@ struct Oval: View, ShapeParams {
                                      y: midY)
             let rightCenter = CGPoint(x: midX + midX / 3,
                                       y: midY)
-            let radius = min(width/1.3, height/1.3) / 4
+            let radius = min(size.width/1.3, size.height/1.3) / 4
             let start = CGPoint(x: midX - midX / 3,
                                 y: midY - radius)
             path.move(to: start)

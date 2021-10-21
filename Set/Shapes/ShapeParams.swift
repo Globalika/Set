@@ -11,6 +11,14 @@ protocol ShapeParams {
     var color: Color { get }
     var center: CGPoint { get }
     var shadling: EShadling { get }
-    var height: CGFloat { get }
-    var width: CGFloat { get }
+    var size: CGSize { get }
+}
+
+extension ShapeParams {
+    var height: CGFloat {
+        return size.height
+    }
+    var width: CGFloat {
+        return size.width
+    }
 }

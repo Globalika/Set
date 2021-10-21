@@ -62,8 +62,7 @@ struct CardView: View {
                                                 getYCenterCoef(card.content.numberOfShape.rawValue,
                                                                index)),
                                 shadling: card.content.shadling,
-                                height: geometry.size.height,
-                                width: geometry.size.width))
+                                size: geometry.size))
                             .font(Font.system(size: geometry.size.width))
                     }
                 }

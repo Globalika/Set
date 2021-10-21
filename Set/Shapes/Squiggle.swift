@@ -11,21 +11,19 @@ struct Squiggle: View, ShapeParams {
     let color: Color
     let center: CGPoint
     let shadling: EShadling
-    let height: CGFloat
-    let width: CGFloat
+    var size: CGSize
     init(shapeParams: ShapeParams) {
         self.color = shapeParams.color
         self.center = shapeParams.center
         self.shadling = shapeParams.shadling
-        self.height = shapeParams.height
-        self.width = shapeParams.width
+        self.size = shapeParams.size
     }
     var body: some View {
         Path { path in
             let midX = center.x
             let midY = center.y
-            let height = height / 3.5
-            let width = width / 2
+            let height = size.height / 3.5
+            let width = size.width / 2
             let left = CGPoint(x: midX - width / 1.35, y: midY)
             let pass1 = CGPoint(x: midX - width / 3.2,
                                  y: midY + height / 3.5)
