@@ -17,15 +17,15 @@ class SetGameViewModel: ObservableObject {
     var cards: [Card] {
         model.cards
     }
-    var deck: [Card] {
-        model.deck
-    }
     func choose(_ card: Card) {
         model.choose(card)
     }
     func restart() {
         let array = SetGameContent.themeArray.shuffled()
         self.model = SetGameModel { index in array[index] }
+    }
+    func dealStartCards() {
+        model.dealStartCards()
     }
     func dealThreeMore() -> Bool {
         model.dealThreeMore()
@@ -35,5 +35,8 @@ class SetGameViewModel: ObservableObject {
     }
     func isSetNotFull() -> Bool {
         model.isSetNotFull
+    }
+    func getLastInUseIndex() -> Int {
+        model.getLastInUseIndex()
     }
 }
