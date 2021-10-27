@@ -11,7 +11,7 @@ struct Oval: View, ShapeParams {
     let color: Color
     let center: CGPoint
     let shadling: EShadling
-    var size: CGSize
+    let size: CGSize
     init(shapeParams: ShapeParams) {
         self.color = shapeParams.color
         self.center = shapeParams.center

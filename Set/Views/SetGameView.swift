@@ -8,39 +8,27 @@
 import SwiftUI
 
 struct SetGameView: View {
-    @State private var disabled = false
+    @State private var disabled                 = false
+    @State private var isGameFinished           = false
+    @State private var isSetResolved: Bool      = false
+    @State private var cardsToRemove: [Int]     = []
+    @State private var dealt                    = Set<Int>()
     @ObservedObject var game: SetGameViewModel
     @Namespace private var dealingNamespace
-    @State private var gameFinished = false
     var body: some View {
         VStack {
             upperPanel
-            boardBody
+            ZStack {
+                Group {
+                    Spacer()
+                    EndGameView(isPresented: $isGameFinished)
+                    Spacer()
+                } .opacity(isGameFinished ? 1 : 0)
+                boardBody.opacity(isGameFinished ? 0 : 1)
+            }
             lowerPanel
         }
         .padding(3)
-    }
-    var newGame: some View {
-        withAnimation(.linear(duration: 2)) {
-            Button("New Game") {
-                game.restart()
-                dealt = []
-                disabled = false
-            }
-        }
-    }
-    var cardsLeft: some View {
-        Text("cards left: \(game.cardsOnBoard.count + game.cardsInDeck.count)")
-            .foregroundColor(.blue)
-    }
-    var upperPanel: some View {
-        HStack {
-            Spacer()
-            cardsLeft
-            Spacer()
-            newGame
-            Spacer()
-        }
     }
     var lowerPanel: some View {
         HStack {
@@ -51,7 +39,27 @@ struct SetGameView: View {
             Spacer()
         }
     }
-    @State private var dealt = Set<Int>()
+    var upperPanel: some View {
+        HStack {
+            Spacer()
+            cardsLeft
+            Spacer()
+            newGame
+            Spacer()
+        }
+    }
+    var cardsLeft: some View {
+        Text("cards left: \(game.cardsOnBoard.count + game.cardsInDeck.count)")
+            .foregroundColor(.blue)
+    }
+    var newGame: some View {
+        Button("New Game") {
+            game.restart()
+            dealt = []
+            withAnimation { isGameFinished.toggle() }
+            disabled = false
+        }
+    }
     private func deal(_ card: SetGameViewModel.Card) {
         dealt.insert(card.id)
     }
@@ -72,8 +80,6 @@ struct SetGameView: View {
     private func zIndex(of card: SetGameViewModel.Card) -> Double {
         Double(card.id)
     }
-    @State private var isSetResolved: Bool = false
-    @State private var cardsToRemove: [Int] = []
     var boardBody: some View {
         AspectVGrid(items: game.cardsOnBoard, aspectRatio: 2/3) { card in
             Group {
@@ -102,26 +108,29 @@ struct SetGameView: View {
                     game.choose(card)
                     cardsToRemove.append(card.id)
                 }
-                    if game.isThereASet(), !isSetResolved {
-                        isSetResolved.toggle()
-                    }
-                    if !game.isThereASet(), isSetResolved {
-                        cardsToRemove.removeLast()
-                        for (card, id) in zip(game.cardsInDiscardPile.filter({ cardsToRemove.contains($0.id) }),
-                            0..<3) {
-                            withAnimation(threeCardsAnimation(id)) {
-                                deal(card)
-                            }
+                if game.isThereASet(), !isSetResolved {
+                    isSetResolved.toggle()
+                }
+                if !game.isThereASet(), isSetResolved {
+                    cardsToRemove.removeLast()
+                    for (card, id) in zip(game.cardsInDiscardPile.filter({ cardsToRemove.contains($0.id) }),
+                        0..<3) {
+                        withAnimation(threeCardsAnimation(id)) {
+                            deal(card)
                         }
-                        for (card, id) in zip(game.cardsOnBoard.filter({ !isDealt($0) }),
-                            0..<3) {
-                            withAnimation(threeCardsAnimation(id)) {
-                                deal(card)
-                            }
-                        }
-                        cardsToRemove.removeAll()
-                        isSetResolved.toggle()
                     }
+                    for (card, id) in zip(game.cardsOnBoard.filter({ !isDealt($0) }),
+                        0..<3) {
+                        withAnimation(threeCardsAnimation(id)) {
+                            deal(card)
+                        }
+                    }
+                    cardsToRemove.removeAll()
+                    isSetResolved.toggle()
+                }
+                if game.cardsInDeck.isEmpty, game.cardsOnBoard.isEmpty {
+                    withAnimation { isGameFinished.toggle() }
+                }
             }
         }
     }
