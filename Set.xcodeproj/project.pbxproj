@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89ADF9112728A01200C50D2A /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89ADF9102728A01200C50D2A /* ShakeEffect.swift */; };
 		89B52ECF271D607B0061FDC8 /* ShapeParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ECE271D607B0061FDC8 /* ShapeParams.swift */; };
 		89B52ED7271DB4C90061FDC8 /* PathExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ED6271DB4C90061FDC8 /* PathExtention.swift */; };
 		89B52ED9271DE2530061FDC8 /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B52ED8271DE2530061FDC8 /* ViewExtention.swift */; };
+		89BBA662272945C90012B80E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBA661272945C90012B80E /* CardView.swift */; };
 		89C365D72717682200EE4F75 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C365D62717682200EE4F75 /* AspectVGrid.swift */; };
 		89C365D92717739900EE4F75 /* Oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C365D82717739900EE4F75 /* Oval.swift */; };
 		89C511B9271FFB0C00F84285 /* ShapeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C511B8271FFB0C00F84285 /* ShapeModel.swift */; };
@@ -25,9 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89ADF9102728A01200C50D2A /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
 		89B52ECE271D607B0061FDC8 /* ShapeParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeParams.swift; sourceTree = "<group>"; };
 		89B52ED6271DB4C90061FDC8 /* PathExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtention.swift; sourceTree = "<group>"; };
 		89B52ED8271DE2530061FDC8 /* ViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtention.swift; sourceTree = "<group>"; };
+		89BBA661272945C90012B80E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		89C365D62717682200EE4F75 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		89C365D82717739900EE4F75 /* Oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oval.swift; sourceTree = "<group>"; };
 		89C511B8271FFB0C00F84285 /* ShapeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModel.swift; sourceTree = "<group>"; };
@@ -54,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89ADF90F27289FF600C50D2A /* GeometryEffect */ = {
+			isa = PBXGroup;
+			children = (
+				89ADF9102728A01200C50D2A /* ShakeEffect.swift */,
+			);
+			path = GeometryEffect;
+			sourceTree = "<group>";
+		};
 		89B52ECD271D5F900061FDC8 /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +87,40 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		89B5C3C5272709DD00DD4468 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89F3337E2715D9F200DEA9FD /* SetGameView.swift */,
+				89BBA661272945C90012B80E /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		89C983C4272735A600003241 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				89F333922715E9E900DEA9FD /* SetGameContent.swift */,
+				89F3338A2715E29B00DEA9FD /* SetGameModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		89C983C6272735F300003241 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				89F3338C2715E37600DEA9FD /* SetGameViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		89C983C72727360700003241 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				89C365D62717682200EE4F75 /* AspectVGrid.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
 		89F333702715D9F200DEA9FD = {
 			isa = PBXGroup;
 			children = (
@@ -94,13 +140,13 @@
 		89F3337B2715D9F200DEA9FD /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				89ADF90F27289FF600C50D2A /* GeometryEffect */,
+				89C983C72727360700003241 /* Grid */,
+				89C983C6272735F300003241 /* ViewModels */,
+				89C983C4272735A600003241 /* Models */,
+				89B5C3C5272709DD00DD4468 /* Views */,
 				89B52ED0271DAD910061FDC8 /* Extentions */,
-				89F333922715E9E900DEA9FD /* SetGameContent.swift */,
-				89F3338A2715E29B00DEA9FD /* SetGameModel.swift */,
-				89F3338C2715E37600DEA9FD /* SetGameViewModel.swift */,
-				89F3337E2715D9F200DEA9FD /* SetGameView.swift */,
 				89F3337C2715D9F200DEA9FD /* SetApp.swift */,
-				89C365D62717682200EE4F75 /* AspectVGrid.swift */,
 				89F333802715D9F400DEA9FD /* Assets.xcassets */,
 				89F333822715D9F400DEA9FD /* Preview Content */,
 				89B52ECD271D5F900061FDC8 /* Shapes */,
@@ -212,6 +258,8 @@
 				89F3337F2715D9F200DEA9FD /* SetGameView.swift in Sources */,
 				89F3338B2715E29B00DEA9FD /* SetGameModel.swift in Sources */,
 				89B52ED9271DE2530061FDC8 /* ViewExtention.swift in Sources */,
+				89BBA662272945C90012B80E /* CardView.swift in Sources */,
+				89ADF9112728A01200C50D2A /* ShakeEffect.swift in Sources */,
 				89F333912715E40F00DEA9FD /* Squiggle.swift in Sources */,
 				89F3338F2715E3EB00DEA9FD /* Diamond.swift in Sources */,
 				89C365D92717739900EE4F75 /* Oval.swift in Sources */,

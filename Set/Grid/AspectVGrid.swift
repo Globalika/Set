@@ -28,8 +28,10 @@ struct AspectVGrid<Item, ItemView>: View
                     LazyVGrid(columns: [adaptiveGridItem(width: max(width, 60))],
                               spacing: 0) {
                         ForEach(items) { item in
+                            if !items.isEmpty {
                             content(item)
                                 .aspectRatio(aspectRatio, contentMode: .fit)
+                            }
                         }
                     }
                     Spacer(minLength: 0)
