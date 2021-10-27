@@ -2,29 +2,32 @@
 //  CardView.swift
 //  Set
 //
-//  Created by Volodymyr Seredovych on 25.10.2021.
+//  Created by Volodymyr Seredovych on 27.10.2021.
 //
 
 import SwiftUI
 
 struct CardView: View {
     let card: SetGameViewModel.Card
+    var isFaceUp: Bool = true
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 let shape = RoundedRectangle(cornerRadius: DrawingConstrants.cornerRadius)
                 shape.fill().foregroundColor(.gray)
-                VStack {
-                    ForEach((0..<card.content.numberOfShape.rawValue), id: \.self) { index in
-                        card.content.shape.getShape(
-                            shapeParams: ShapeParamsModel(
-                                color: card.content.color.rawValue,
-                                center: CGPoint(x: geometry.size.width / 2,
-                                                y: geometry.size.width *
-                                                getYCenterCoef(card.content.numberOfShape.rawValue,
-                                                               index)),
-                                shadling: card.content.shadling,
-                                size: geometry.size))
+                if isFaceUp {
+                    VStack {
+                        ForEach((0..<card.content.numberOfShape.rawValue), id: \.self) { index in
+                            card.content.shape.getShape(
+                                shapeParams: ShapeParamsModel(
+                                    color: card.content.color.rawValue,
+                                    center: CGPoint(x: geometry.size.width / 2,
+                                                    y: geometry.size.width *
+                                                    getYCenterCoef(card.content.numberOfShape.rawValue,
+                                                                   index)),
+                                    shadling: card.content.shadling,
+                                    size: geometry.size))
+                        }
                     }
                 }
             }

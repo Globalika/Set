@@ -11,6 +11,7 @@ struct SetGameModel {
     private(set) var cardsInDeck: [Card]
     private(set) var cardsOnBoard: [Card] = []
     private(set) var cardsInDiscardPile: [Card] = []
+    private(set) var lastDiscardedCards: [Card] = []
     private var setForCheck: Set<Int> = []
     var isThereASet: Bool = false
     var isSetNotFull: Bool { setForCheck.count < 3 }
@@ -81,14 +82,17 @@ struct SetGameModel {
             for index in setForCheck {
                 cardsOnBoard[index].isSelected = false
             }
+            if lastDiscardedCards.count == 3 {
+                lastDiscardedCards.removeFirst()
+            }
             if cardsInDeck.isEmpty {
                 for index in setForCheck.sorted(by: >) {
-                    cardsInDiscardPile.append(cardsOnBoard.remove(at: index))
+                    lastDiscardedCards.append(cardsOnBoard.remove(at: index))
                 }
             } else {
                 for index in setForCheck.sorted(by: >) {
                     if let deckFirstElement = cardsInDeck.first {
-                        cardsInDiscardPile.append(cardsOnBoard[index])
+                        lastDiscardedCards.append(cardsOnBoard[index])
                         cardsOnBoard[index] = deckFirstElement
                         cardsInDeck.remove(at: cardsInDeck.startIndex)
                     }

@@ -30,7 +30,7 @@ class SetGameViewModel: ObservableObject {
         let array = SetGameContent.themeArray.shuffled()
         self.model = SetGameModel { index in array[index] }
     }
-    func dealThreeMore() {
+    func dealThreeMore() -> Bool {
         model.dealThreeMore()
     }
     func dealStartCards() {
@@ -41,5 +41,8 @@ class SetGameViewModel: ObservableObject {
     }
     func isSetNotFull() -> Bool {
         model.isSetNotFull
+    }
+    func lastDiscarded() -> [Card] {
+        model.lastDiscardedCards
     }
 }

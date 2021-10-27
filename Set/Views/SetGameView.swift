@@ -11,6 +11,7 @@ struct SetGameView: View {
     @State private var disabled = false
     @ObservedObject var game: SetGameViewModel
     @Namespace private var dealingNamespace
+    @State private var gameFinished = false
     var body: some View {
         VStack {
             upperPanel
@@ -68,13 +69,11 @@ struct SetGameView: View {
         let delay = Double(id) * CardConstants.totalThreeMoreCardsDealDuraction / 3
         return Animation.easeInOut(duration: CardConstants.dealDuraction).delay(delay)
     }
-    private func dealAnimation(for card: SetGameViewModel.Card) -> Animation {
-        var delay = 0.0
-        if let index = game.cardsOnBoard.firstIndex(where: { $0.id == card.id }) {
-            delay = Double(index) * CardConstants.totalStartCardsDealDuraction / 81
-        }
-        return Animation.easeInOut(duration: CardConstants.dealDuraction).delay(delay)
+    private func zIndex(of card: SetGameViewModel.Card) -> Double {
+        Double(card.id)
     }
+    @State private var isSetResolved: Bool = false
+    @State private var cardsToRemove: [Int] = []
     var boardBody: some View {
         AspectVGrid(items: game.cardsOnBoard, aspectRatio: 2/3) { card in
             Group {
@@ -97,36 +96,54 @@ struct SetGameView: View {
             .transition(AnyTransition.asymmetric(insertion: .identity, removal: .opacity))
             .shakeEffect(withForce: game.isSetNotFull() ? 0 : (game.isThereASet() ? 0 : 1))
             .padding(2)
+            .zIndex(zIndex(of: card))
             .onTapGesture {
                 withAnimation {
                     game.choose(card)
+                    cardsToRemove.append(card.id)
                 }
+                    if game.isThereASet(), !isSetResolved {
+                        isSetResolved.toggle()
+                    }
+                    if !game.isThereASet(), isSetResolved {
+                        cardsToRemove.removeLast()
+                        for (card, id) in zip(game.cardsInDiscardPile.filter({ cardsToRemove.contains($0.id) }),
+                            0..<3) {
+                            withAnimation(threeCardsAnimation(id)) {
+                                deal(card)
+                            }
+                        }
+                        for (card, id) in zip(game.cardsOnBoard.filter({ !isDealt($0) }),
+                            0..<3) {
+                            withAnimation(threeCardsAnimation(id)) {
+                                deal(card)
+                            }
+                        }
+                        cardsToRemove.removeAll()
+                        isSetResolved.toggle()
+                    }
             }
         }
     }
     var deckBody: some View {
         ZStack {
             ForEach(game.cardsInDeck + game.cardsOnBoard.filter { !isDealt($0) }) { card in
-                CardView(card: card)
+                CardView(card: card, isFaceUp: false)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .transition(AnyTransition.asymmetric(insertion: .opacity, removal: .identity))
+                    .zIndex(zIndex(of: card))
             }
             .frame(width: CardConstants.undealtWidth,
                    height: CardConstants.undealtHeight)
-        }
-        .onAppear {
-            for card in game.cardsOnBoard {
-                withAnimation(dealAnimation(for: card)) {
-                    deal(card)
-                }
-            }
         }
         .onTapGesture {
             withAnimation {
                 if game.cardsInDeck.count == 81 {
                     game.dealStartCards()
                 } else {
-                    game.dealThreeMore()
+                    if !game.dealThreeMore() {
+                        return
+                    }
                 }
             }
             let cards = game.cardsOnBoard.filter({ !isDealt($0) })
@@ -147,14 +164,15 @@ struct SetGameView: View {
     }
     var discardPileBody: some View {
         ZStack {
-            ForEach(game.cardsInDiscardPile) { card in
+            ForEach(game.lastDiscarded()) { card in
                 CardView(card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .transition(AnyTransition.asymmetric(insertion: .identity, removal: .opacity))
+                    .zIndex(zIndex(of: card))
             }
         }
         .frame(width: CardConstants.undealtWidth,
-               height: CardConstants.undealtHeight)
+           height: CardConstants.undealtHeight)
     }
     private struct CardConstants {
         static let aspectRatio: CGFloat = 2/3
